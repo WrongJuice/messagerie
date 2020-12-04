@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FirebaseService} from '../../services/firebase.service';
 import {User} from '../../model/user';
+import {ValidatePassword} from '../../customs/customValidators/validate-password';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +14,6 @@ export class AddUserPage implements OnInit {
   userForm: FormGroup;
   showPassword = false;
   showConfirmPassword = false;
-  passwordToggleIcon = 'eye';
 
   constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder) {}
 
@@ -26,7 +26,9 @@ export class AddUserPage implements OnInit {
       birthdate: ['', [Validators.required]],
       email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
       password: ['', [Validators.required]],
-      passwordConfirm: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    }, {
+      validator: ValidatePassword.MatchPassword // custom validation
     });
   }
 
@@ -56,4 +58,5 @@ export class AddUserPage implements OnInit {
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
+
 }

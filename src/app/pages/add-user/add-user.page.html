@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add-user</ion-title>
+    <ion-title>Create an account</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -41,13 +41,13 @@
     <ion-item>
       <ion-label position="floating" >Password :</ion-label>
       <ion-input formControlName="password" placeholder="Password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-      <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+      <ion-icon slot="end" name="eye" (click)="togglePassword()"></ion-icon>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Confirm your password :</ion-label>
-      <ion-input formControlName="passwordConfirm" placeholder="Confirm password" [type]="showConfirmPassword ? 'text' : 'password'"></ion-input>
-      <ion-icon slot="end" [name]="passwordToggleIcon" (click)="toggleConfirmPassword()"></ion-icon>
+      <ion-input formControlName="confirmPassword" placeholder="Confirm password" [type]="showConfirmPassword ? 'text' : 'password'"></ion-input>
+      <ion-icon slot="end" name="eye" (click)="toggleConfirmPassword()"></ion-icon>
     </ion-item>
 
     <ion-item>
