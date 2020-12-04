@@ -24,20 +24,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/user-profil/user-profil.module').then( m => m.UserProfilPageModule)
   },
   {
-    path: 'user-conversation',
-    loadChildren: () => import('./user-conversation/user-conversation.module').then( m => m.UserConversationPageModule)
-  },
-  {
-    path: 'user-conversation',
-    loadChildren: () => import('./user-conversation/user-conversation.module').then( m => m.UserConversationPageModule)
-  },
-  {
-    path: 'user-conversation',
-    loadChildren: () => import('./pages/user-conversation/user-conversation.module').then( m => m.UserConversationPageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'conversation',
+    loadChildren: () => import('./pages/conversation/conversation.module').then( m => m.ConversationPageModule)
   },
 ];
 
