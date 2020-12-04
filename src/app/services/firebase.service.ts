@@ -9,7 +9,6 @@ import {User} from '../model/user';
 export class FirebaseService {
 
   private collectionName = 'User';
-  private user: User;
 
   constructor(private firestore: AngularFirestore) { }
 

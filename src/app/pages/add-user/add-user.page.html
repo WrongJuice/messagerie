@@ -9,33 +9,33 @@
   <form [formGroup]="userForm" (ngSubmit)="submit()">
 
     <ion-item>
-      <ion-label position="floating">Firstname :</ion-label>
-      <ion-input formControlName="firstname"></ion-input>
+      <ion-label position="floating">First Name :</ion-label>
+      <ion-input formControlName="firstName" placeholder="First Name"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Lastname :</ion-label>
-      <ion-input formControlName="lastname"></ion-input>
+      <ion-label position="floating">Last Name :</ion-label>
+      <ion-input formControlName="lastName" placeholder="Last Name"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label position="floating">Username :</ion-label>
-      <ion-input formControlName="username"></ion-input>
+      <ion-label position="floating">Username (between 5 and 15 characters) :</ion-label>
+      <ion-input formControlName="username" placeholder="Username"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Address :</ion-label>
-      <ion-input formControlName="address"></ion-input>
+      <ion-input formControlName="address" placeholder="Address"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Birthdate :</ion-label>
-      <ion-datetime formControlName="birthDate"></ion-datetime>
+      <ion-datetime formControlName="birthdate" placeholder="Birthdate"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label position="floating">Email :</ion-label>
-      <ion-input formControlName="mail"></ion-input>
+      <ion-input formControlName="email" placeholder="Email"></ion-input>
     </ion-item>
 
     <ion-item>

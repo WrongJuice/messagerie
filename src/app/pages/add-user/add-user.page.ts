@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FirebaseService} from '../../services/firebase.service';
 import {User} from '../../model/user';
 
@@ -19,12 +19,12 @@ export class AddUserPage implements OnInit {
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
-      firstname: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
-      username: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      username: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^(?=[a-zA-Z0-9._]{5,15}$)(?!.*[_.]{2})[^_.].*[^_.]$')])),
       address: ['', [Validators.required]],
-      birthDate: ['', [Validators.required]],
-      mail: ['', [Validators.required], Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
+      birthdate: ['', [Validators.required]],
+      email: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')])),
       password: ['', [Validators.required]],
       passwordConfirm: ['', [Validators.required]],
     });
@@ -33,11 +33,11 @@ export class AddUserPage implements OnInit {
   submit() {
     console.log(this.userForm.value);
     const user: User = {
-      firstname: this.userForm.value.firstname,
-      lastname: this.userForm.value.username,
-      username: this.userForm.value.firstname,
-      birthDate: this.userForm.value.birthDate,
-      mail: this.userForm.value.mail,
+      firstName: this.userForm.value.firstName,
+      lastName: this.userForm.value.lastName,
+      username: this.userForm.value.username,
+      birthdate: this.userForm.value.birthdate,
+      email: this.userForm.value.email,
       address: this.userForm.value.address,
       password: this.userForm.value.password,
     };
@@ -46,7 +46,7 @@ export class AddUserPage implements OnInit {
     }).catch(error => {
       console.log(error);
     });
-    console.log('done');
+    console.log('user_created');
   }
 
   togglePassword() {

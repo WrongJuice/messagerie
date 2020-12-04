@@ -19,11 +19,11 @@ export class HomePage implements OnInit {
 
       this.users = data.map(e => {
         return {
-          firstname: e.payload.doc.data()['firstName'],
-          lastname: e.payload.doc.data()['lastName'],
-          username: e.payload.doc.data()['lastName'],
-          birthDate: e.payload.doc.data()['birthDate'],
-          mail: e.payload.doc.data()['mail'],
+          firstName: e.payload.doc.data()['firstName'],
+          lastName: e.payload.doc.data()['lastName'],
+          username: e.payload.doc.data()['username'],
+          birthdate: e.payload.doc.data()['birthdate'],
+          email: e.payload.doc.data()['email'],
           password: e.payload.doc.data()['password'],
           address: e.payload.doc.data()['address'],
         };
