@@ -5,11 +5,11 @@ import {User} from '../../model/user';
 import {ValidatePassword} from '../../customs/customValidators/validate-password';
 
 @Component({
-  selector: 'app-add-user',
-  templateUrl: './add-user.page.html',
-  styleUrls: ['./add-user.page.scss'],
+  selector: 'app-create-account',
+  templateUrl: './create-account.page.html',
+  styleUrls: ['./create-account.page.scss'],
 })
-export class AddUserPage implements OnInit {
+export class CreateAccountPage implements OnInit {
 
   userForm: FormGroup;
   showPassword = false;
@@ -58,5 +58,4 @@ export class AddUserPage implements OnInit {
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
-
 }

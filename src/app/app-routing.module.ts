@@ -12,10 +12,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'add-user',
-    loadChildren: () => import('./pages/add-user/add-user.module').then( m => m.AddUserPageModule)
-  },
-  {
     path: 'authentication',
     loadChildren: () => import('./pages/authentication/authentication.module').then( m => m.AuthenticationPageModule)
   },
@@ -30,6 +26,10 @@ const routes: Routes = [
   {
     path: 'conversation',
     loadChildren: () => import('./pages/conversation/conversation.module').then( m => m.ConversationPageModule)
+  },
+  {
+    path: 'create-account',
+    loadChildren: () => import('./pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
   },
 ];
 
