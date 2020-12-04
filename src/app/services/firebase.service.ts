@@ -10,12 +10,11 @@ export class FirebaseService {
 
   private collectionName = 'User';
   private user: User;
-  private lastId = 1;
 
   constructor(private firestore: AngularFirestore) { }
 
   create_user(user: User) {
-    this.user = { id: this.lastId++, ...user };
+    // this.user = { id: this.lastId++, ...user };
     return this.firestore.collection(this.collectionName).add(user);
   }
 

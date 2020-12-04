@@ -11,13 +11,17 @@ import {User} from '../../model/user';
 export class AddUserPage implements OnInit {
 
   userForm: FormGroup;
+  showPassword = false;
+  showConfirmPassword = false;
+  passwordToggleIcon = 'eye';
 
   constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
       firstname: ['', [Validators.required]],
-      userName: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       address: ['', [Validators.required]],
       birthDate: ['', [Validators.required]],
       mail: ['', [Validators.required], Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')],
@@ -29,9 +33,9 @@ export class AddUserPage implements OnInit {
   submit() {
     console.log(this.userForm.value);
     const user: User = {
-      firstName: this.userForm.value.firstName,
-      lastName: this.userForm.value.userName,
-      userName: this.userForm.value.firstName,
+      firstname: this.userForm.value.firstname,
+      lastname: this.userForm.value.username,
+      username: this.userForm.value.firstname,
       birthDate: this.userForm.value.birthDate,
       mail: this.userForm.value.mail,
       address: this.userForm.value.address,
@@ -45,4 +49,11 @@ export class AddUserPage implements OnInit {
     console.log('done');
   }
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
+  toggleConfirmPassword() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
 }
