@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Authentication</ion-title>
+    <ion-title>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <form [formGroup]="authForm" (ngSubmit)="submit()">
+  <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
     <ion-item>
       <ion-label position="floating">Email :</ion-label>
@@ -16,11 +16,11 @@
     <ion-item>
       <ion-label position="floating" >Password :</ion-label>
       <ion-input formControlName="password" placeholder="Password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-      <ion-icon slot="end" [name]="passwordToggleIcon" (click)="togglePassword()"></ion-icon>
+      <ion-icon slot="end" name="eye" (click)="togglePassword()"></ion-icon>
     </ion-item>
 
     <ion-item>
-      <ion-button (click)="submit()" [disabled]="authForm.invalid">
+      <ion-button (click)="submit()" [disabled]="loginForm.invalid">
         &nbsp;Connexion
       </ion-button>
     </ion-item>
