@@ -6,35 +6,44 @@
 
 <ion-content>
 
-  <form *ngIf="!connected" [formGroup]="loginForm" (ngSubmit)="submit()">
+  <ng-container *ngIf="!connected">
 
-    <ion-item>
-      <ion-label position="floating">Email :</ion-label>
-      <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
-    </ion-item>
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
-    <ion-item>
-      <ion-label position="floating" >Password :</ion-label>
-      <ion-input formControlName="password" placeholder="Password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-      <ion-icon slot="end" [name]="showPassword ? 'eye' : 'eye-off-outline'" (click)="togglePassword()"></ion-icon>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating">Email :</ion-label>
+        <ion-input type="email" formControlName="email" placeholder="Email"></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-button (click)="submit()" [disabled]="loginForm.invalid">
-        &nbsp;Login
-      </ion-button>
-    </ion-item>
+      <ion-item>
+        <ion-label position="floating" >Password :</ion-label>
+        <ion-input formControlName="password" placeholder="Password" [type]="showPassword ? 'text' : 'password'"></ion-input>
+        <ion-icon slot="end" [name]="showPassword ? 'eye' : 'eye-off-outline'" (click)="togglePassword()"></ion-icon>
+      </ion-item>
 
-  </form>
+      <ion-item>
+        <ion-button (click)="submit()" [disabled]="loginForm.invalid">
+          &nbsp;Login
+        </ion-button>
+      </ion-item>
+
+    </form>
+
+    <ion-list style="text-align:center">
+
+      <ion-label style="display: block">No account ?</ion-label>
+      <ion-button (click)="createAccount()">Create one !</ion-button>
+
+    </ion-list>
+
+  </ng-container>
 
   <div *ngIf="connected">
     <h1>You are connected !</h1>
 
-    <ion-item>
-      <ion-button (click)="logout()" color="danger">
-        &nbsp;Logout
-      </ion-button>
-    </ion-item>
+    <ion-button (click)="logout()" color="danger">
+      &nbsp;Logout
+    </ion-button>
   </div>
 
 </ion-content>

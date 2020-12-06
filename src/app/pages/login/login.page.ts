@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {CreateAccountPage} from '../create-account/create-account.page';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ export class LoginPage implements OnInit {
   showPassword = false;
   connected: boolean;
 
-  constructor(public afAuth: AngularFireAuth, public formBuilder: FormBuilder) {
+  constructor(public afAuth: AngularFireAuth, public formBuilder: FormBuilder, public navCtrl: NavController) {
     this.afAuth.authState.subscribe(auth => {
       if (!auth) {
         console.log('non connecte');
@@ -54,5 +56,9 @@ export class LoginPage implements OnInit {
 
   logout() {
     this.afAuth.signOut().then(r => console.log(this.connected = false));
+  }
+
+  createAccount() {
+    this.navCtrl.navigateForward('/create-account');
   }
 }
