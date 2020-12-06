@@ -15,8 +15,19 @@ export class LoginPage implements OnInit {
   };
   loginForm: FormGroup;
   showPassword = false;
+  connected: boolean;
 
-  constructor(public afAuth: AngularFireAuth, public formBuilder: FormBuilder) {}
+  constructor(public afAuth: AngularFireAuth, public formBuilder: FormBuilder) {
+    this.afAuth.authState.subscribe(auth => {
+      if (!auth) {
+        console.log('non connecte');
+        this.connected = false;
+      } else {
+        console.log('connecte');
+        this.connected = true;
+      }
+    });
+  }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,6 +42,17 @@ export class LoginPage implements OnInit {
 
   submit() {
     console.log('submit');
+    this.dataUser.email = this.loginForm.value.email;
+    this.dataUser.password = this.loginForm.value.password;
+    this.afAuth.signInWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
+        .then(r => this.connected = true);
+    this.dataUser = {
+      email: '',
+      password: ''
+    };
+  }
+
+  logout() {
+    this.afAuth.signOut().then(r => console.log(this.connected = false));
   }
 }
-
