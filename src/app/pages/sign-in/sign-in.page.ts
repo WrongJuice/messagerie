@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {CreateAccountPage} from '../create-account/create-account.page';
 import {NavController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.page.html',
+  styleUrls: ['./sign-in.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class SignInPage implements OnInit {
 
   dataUser = {
     email: '',
@@ -47,11 +46,15 @@ export class LoginPage implements OnInit {
     this.dataUser.email = this.loginForm.value.email;
     this.dataUser.password = this.loginForm.value.password;
     this.afAuth.signInWithEmailAndPassword(this.dataUser.email, this.dataUser.password)
-        .then(r => this.connected = true);
-    this.dataUser = {
-      email: '',
-      password: ''
-    };
+        .then(() => {
+          this.connected = true;
+          this.dataUser = {
+            email: '',
+            password: ''
+          };
+        }).catch((error) => {
+      window.alert(error.message);
+    });
   }
 
   logout() {
@@ -59,6 +62,7 @@ export class LoginPage implements OnInit {
   }
 
   createAccount() {
-    this.navCtrl.navigateForward('/create-account');
+    this.navCtrl.navigateForward('/sign-up');
   }
 }
+

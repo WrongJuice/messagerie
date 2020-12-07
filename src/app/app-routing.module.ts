@@ -20,12 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./pages/conversation/conversation.module').then( m => m.ConversationPageModule)
   },
   {
-    path: 'create-account',
-    loadChildren: () => import('./pages/create-account/create-account.module').then( m => m.CreateAccountPageModule)
+    path: 'sign-in',
+    loadChildren: () => import('./pages/sign-in/sign-in.module').then( m => m.SignInPageModule)
   },
   {
-    path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    path: 'sign-up',
+    loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
   },
 ];
 

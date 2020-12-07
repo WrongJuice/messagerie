@@ -6,11 +6,11 @@ import {ValidatePassword} from '../../customs/customValidators/validate-password
 import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
-  selector: 'app-create-account',
-  templateUrl: './create-account.page.html',
-  styleUrls: ['./create-account.page.scss'],
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.page.html',
+  styleUrls: ['./sign-up.page.scss'],
 })
-export class CreateAccountPage implements OnInit {
+export class SignUpPage implements OnInit {
 
   userForm: FormGroup;
   showPassword = false;
@@ -59,7 +59,7 @@ export class CreateAccountPage implements OnInit {
               }
           );
         }).catch((error) => {
-          window.alert(error.message);
+      window.alert(error.message);
     });
   }
 
