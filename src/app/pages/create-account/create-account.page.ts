@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {FirebaseService} from '../../services/firebase.service';
 import {User} from '../../model/user';
 import {ValidatePassword} from '../../customs/customValidators/validate-password';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-create-account',
@@ -15,7 +16,7 @@ export class CreateAccountPage implements OnInit {
   showPassword = false;
   showConfirmPassword = false;
 
-  constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder) {}
+  constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder, public afAuth: AngularFireAuth) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -34,6 +35,7 @@ export class CreateAccountPage implements OnInit {
 
   submit() {
     console.log(this.userForm.value);
+
     const user: User = {
       firstName: this.userForm.value.firstName,
       lastName: this.userForm.value.lastName,
@@ -43,12 +45,22 @@ export class CreateAccountPage implements OnInit {
       address: this.userForm.value.address,
       password: this.userForm.value.password,
     };
-    this.firebaseService.create_user(user).then(() => {
-      this.userForm.reset();
-    }).catch(error => {
-      console.log(error);
+
+    this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
+        .then(() => {
+          this.afAuth.authState.subscribe(
+              auth => {
+                this.firebaseService.create_user({ id: auth.uid, ...user }, auth.uid).then(() => {
+                  this.userForm.reset();
+                  window.alert('You have been successfully registered !');
+                }).catch(error => {
+                  console.log(error);
+                });
+              }
+          );
+        }).catch((error) => {
+          window.alert(error.message);
     });
-    console.log('user_created');
   }
 
   togglePassword() {
@@ -58,4 +70,5 @@ export class CreateAccountPage implements OnInit {
   toggleConfirmPassword() {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
+
 }

@@ -12,9 +12,8 @@ export class FirebaseService {
 
   constructor(private firestore: AngularFirestore) { }
 
-  create_user(user: User) {
-    // this.user = { id: this.lastId++, ...user };
-    return this.firestore.collection(this.collectionName).add(user);
+  create_user(user: User, uid: string) {
+    return this.firestore.collection(this.collectionName).doc(uid).set(user);
   }
 
   read_user() {
