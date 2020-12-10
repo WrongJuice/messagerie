@@ -1,9 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>conversation</ion-title>
+    <ion-title>'s conversation</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col class="inputCol" size="10">
+        <ion-input [(ngModel)]="message" placeholder="Enter your message"></ion-input>
+      </ion-col>
+      <ion-col class="sendCol" size="2">
+        <ion-buttons (click)="send()" shape="full">
+          <ion-icon name="send"></ion-icon>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

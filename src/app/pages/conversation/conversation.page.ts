@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {AngularFireDatabase} from '@angular/fire/database';
 
 @Component({
   selector: 'app-conversation',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConversationPage implements OnInit {
 
-  constructor() { }
+  message: '';
 
-  ngOnInit() {
+  constructor(private afDB: AngularFireDatabase) { }
+
+  ngOnInit() { }
+
+  send() {
+    console.log('send : ' + this.message);
+    this.afDB.list('Messages/').push({
+      message: this.message,
+      userId: 'testId',
+      date: new Date().toISOString()
+    });
+    this.message = '';
   }
-
 }
