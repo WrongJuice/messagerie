@@ -53,6 +53,7 @@ export class HomePage implements OnInit {
           email: e.payload.doc.data()['email'],
           password: e.payload.doc.data()['password'],
           address: e.payload.doc.data()['address'],
+          id: e.payload.doc.data()['id']
         };
       });
       console.log(this.users);

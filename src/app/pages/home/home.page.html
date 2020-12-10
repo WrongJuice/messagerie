@@ -2,7 +2,7 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-list style="text-align: center">
-      <ion-button (click)="goToUserProfil()">
+      <ion-button (click)="goToUserProfil()" color="primary">
         <ion-icon class="btn-Icon" name="person-circle-outline"></ion-icon>
         {{ dataUser.username }}'s profile
       </ion-button>
@@ -14,7 +14,8 @@
 
     <ion-list *ngFor="let user of users">
       <ion-list>
-        <app-conversation-overview [username]="user.username"></app-conversation-overview>
+        <ion-label>uid = {{user.id}}</ion-label>
+        <app-conversation-overview [username]="user.username" [uid]="user.id"></app-conversation-overview>
       </ion-list>
     </ion-list>
   </ion-toolbar>

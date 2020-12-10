@@ -1,4 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NavigationExtras} from '@angular/router';
+import {NavController} from '@ionic/angular';
+import {AngularFireAuth} from '@angular/fire/auth';
 
 @Component({
   selector: 'app-conversation-overview',
@@ -8,9 +11,18 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ConversationOverviewComponent implements OnInit {
 
   @Input() username: '';
+  @Input() uid: '';
 
-  constructor() { }
+  constructor(public navCtrl: NavController) { }
 
   ngOnInit() {}
 
+  goToUserProfile() {
+    const navigationExtras: NavigationExtras = {
+      state: {
+        uid: this.uid
+      }
+    };
+    this.navCtrl.navigateForward(['user-profile'], navigationExtras);
+  }
 }
