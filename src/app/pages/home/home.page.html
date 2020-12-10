@@ -11,13 +11,18 @@
         Logout
       </ion-button>
     </ion-list>
+
+    <ion-list *ngFor="let user of users">
+      <ion-list>
+        <app-conversation-overview [username]="user.username"></app-conversation-overview>
+      </ion-list>
+    </ion-list>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <ion-list>
-
 
   </ion-list>
 
