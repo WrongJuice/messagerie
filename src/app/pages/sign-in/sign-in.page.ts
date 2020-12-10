@@ -52,6 +52,7 @@ export class SignInPage implements OnInit {
             email: '',
             password: ''
           };
+          this.navCtrl.navigateForward('/home');
         }).catch((error) => {
       window.alert(error.message);
     });

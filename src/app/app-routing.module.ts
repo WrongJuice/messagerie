@@ -8,10 +8,6 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'user-profil',
-    loadChildren: () => import('./pages/user-profil/user-profil.module').then( m => m.UserProfilPageModule)
-  },
-  {
     path: 'home',
     loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
   },
@@ -26,6 +22,10 @@ const routes: Routes = [
   {
     path: 'sign-up',
     loadChildren: () => import('./pages/sign-up/sign-up.module').then( m => m.SignUpPageModule)
+  },
+  {
+    path: 'user-profile',
+    loadChildren: () => import('./pages/user-profile/user-profile.module').then( m => m.UserProfilePageModule)
   },
 ];
 
