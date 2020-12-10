@@ -23,12 +23,7 @@ export class HomePage implements OnInit {
     this.route.queryParams.subscribe(() => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.dataUser.uid = this.router.getCurrentNavigation().extras.state.uid;
-        firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
-          this.dataUser = {
-            username: data.payload.data()['username'],
-            uid: this.dataUser.uid
-          };
-        });
+        this.setDatas(firebaseService);
         console.log('Hello ' + this.dataUser.uid);
       } else {
         this.afAuth.authState.subscribe(auth => {
@@ -37,12 +32,7 @@ export class HomePage implements OnInit {
           } else {
             console.log('connected');
             this.dataUser.uid = auth.uid;
-            firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
-              this.dataUser = {
-                username: data.payload.data()['username'],
-                uid: this.dataUser.uid
-              };
-            });
+            this.setDatas(firebaseService);
             console.log('Hello ' + this.dataUser.uid);
           }
         });
@@ -77,5 +67,14 @@ export class HomePage implements OnInit {
 
   goToUserProfil() {
     this.navCtrl.navigateForward(['user-profile']);
+  }
+
+  setDatas(firebaseService: FirebaseService){
+    firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
+      this.dataUser = {
+        username: data.payload.data()['username'],
+        uid: this.dataUser.uid
+      };
+    });
   }
 }
