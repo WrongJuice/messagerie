@@ -80,4 +80,7 @@ export class SignUpPage implements OnInit {
     this.showConfirmPassword = !this.showConfirmPassword;
   }
 
+  goToSignIn() {
+    this.navCtrl.navigateForward(['sign-in']);
+  }
 }

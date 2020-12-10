@@ -2,8 +2,14 @@
   <ion-toolbar>
     <ion-title>Home</ion-title>
     <ion-list style="text-align: center">
-      <ion-button (click)="goToUserProfil()">{{ dataUser.username }}</ion-button>
-      <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      <ion-button (click)="goToUserProfil()">
+        <ion-icon class="btn-Icon" name="person-circle-outline"></ion-icon>
+        {{ dataUser.username }}'s profile
+      </ion-button>
+      <ion-button (click)="logout()" color="danger">
+        <ion-icon class="btn-Icon" name="log-out-outline"></ion-icon>
+        Logout
+      </ion-button>
     </ion-list>
   </ion-toolbar>
 </ion-header>

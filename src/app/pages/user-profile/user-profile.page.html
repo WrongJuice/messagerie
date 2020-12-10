@@ -32,8 +32,14 @@
       <ion-label class="userValue">{{ dataUser.birthdate | date: 'MMM dd, yyyy' }}</ion-label>
     </ion-item>
     <ion-list style="text-align: center">
-      <ion-button (click)="gotToHome()">Return</ion-button>
-      <ion-button (click)="logout()" color="danger">Logout</ion-button>
+      <ion-button (click)="gotToHome()">
+        <ion-icon class="btn-Icon" slot="icon-only" name="arrow-undo-circle-outline"></ion-icon>
+        Return
+      </ion-button>
+      <ion-button (click)="logout()" color="danger">
+        <ion-icon class="btn-Icon" name="log-out-outline"></ion-icon>
+        Logout
+      </ion-button>
     </ion-list>
   </ion-list>
 

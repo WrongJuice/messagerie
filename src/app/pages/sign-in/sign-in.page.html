@@ -23,6 +23,7 @@
 
       <ion-item>
         <ion-button (click)="submit()" [disabled]="loginForm.invalid">
+          <ion-icon class="btn-Icon" slot="icon-only" name="arrow-forward-circle-outline"></ion-icon>
           &nbsp;Login
         </ion-button>
       </ion-item>
@@ -32,7 +33,10 @@
     <ion-list style="text-align:center">
 
       <ion-label style="display: block">No account ?</ion-label>
-      <ion-button (click)="createAccount()">Create one !</ion-button>
+      <ion-button (click)="createAccount()">
+        <ion-icon class="btn-Icon" size="small" slot="icon-only" name="add"></ion-icon>
+        Create one !
+      </ion-button>
 
     </ion-list>
 

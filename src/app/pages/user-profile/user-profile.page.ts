@@ -61,8 +61,11 @@ export class UserProfilePage implements OnInit {
   }
 
   logout() {
-    this.afAuth.signOut().then(() => console.log('logout'));
-    this.navCtrl.navigateForward(['sign-in']);
+    this.afAuth.signOut()
+        .then(() => {
+          console.log('logout');
+          this.navCtrl.navigateForward(['sign-in']);
+        });
   }
 
   gotToHome() {

@@ -50,12 +50,16 @@
       <ion-icon slot="end" [name]="showConfirmPassword ? 'eye' : 'eye-off-outline'" (click)="toggleConfirmPassword()"></ion-icon>
     </ion-item>
 
-    <ion-item>
+    <ion-list style="text-align: center">
       <ion-button (click)="submit()" [disabled]="userForm.invalid">
-        <ion-icon size="small" slot="icon-only" name="add"></ion-icon>
+        <ion-icon class="btn-Icon" size="small" slot="icon-only" name="add"></ion-icon>
         &nbsp;Create account
       </ion-button>
-    </ion-item>
+      <ion-button (click)="goToSignIn()">
+        <ion-icon class="btn-Icon" slot="icon-only" name="arrow-undo-circle-outline"></ion-icon>
+        &nbsp;Return to login
+      </ion-button>
+    </ion-list>
 
   </form>
 
