@@ -69,7 +69,7 @@ export class SignInPage implements OnInit {
   }
 
   createAccount() {
-    this.navCtrl.navigateForward('/sign-up');
+    this.navCtrl.navigateForward(['sign-up']);
   }
 }
 

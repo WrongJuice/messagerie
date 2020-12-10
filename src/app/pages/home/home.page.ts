@@ -72,6 +72,10 @@ export class HomePage implements OnInit {
 
   logout() {
     this.afAuth.signOut().then(() => console.log('logout'));
-    this.navCtrl.navigateForward('/sign-in');
+    this.navCtrl.navigateForward(['sign-in']);
+  }
+
+  goToUserProfil() {
+    this.navCtrl.navigateForward(['user-profile']);
   }
 }
