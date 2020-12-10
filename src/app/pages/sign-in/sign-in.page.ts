@@ -25,10 +25,10 @@ export class SignInPage implements OnInit {
   constructor(public afAuth: AngularFireAuth, public formBuilder: FormBuilder, public navCtrl: NavController) {
     this.afAuth.authState.subscribe(auth => {
       if (!auth) {
-        console.log('non connecte');
+        console.log('not connected');
         this.connected = false;
       } else {
-        console.log('connecte');
+        console.log('connected');
         this.connected = true;
         this.uid = auth.uid;
         const navigationExtras: NavigationExtras = {

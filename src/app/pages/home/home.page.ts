@@ -33,9 +33,9 @@ export class HomePage implements OnInit {
       } else {
         this.afAuth.authState.subscribe(auth => {
           if (!auth) {
-            console.log('non connecte');
+            console.log('not connected');
           } else {
-            console.log('connecte');
+            console.log('connected');
             this.dataUser.uid = auth.uid;
             firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
               this.dataUser = {
@@ -71,7 +71,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
-    this.afAuth.signOut().then(r => console.log('deconnexion'));
+    this.afAuth.signOut().then(() => console.log('logout'));
     this.navCtrl.navigateForward('/sign-in');
   }
 }
