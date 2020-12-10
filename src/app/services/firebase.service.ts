@@ -20,6 +20,10 @@ export class FirebaseService {
     return this.firestore.collection(this.collectionName).snapshotChanges();
   }
 
+  getUserById(id: string) {
+    return this.firestore.collection(this.collectionName).doc(id).snapshotChanges();
+  }
+
   update_user(recordID, record) {
     this.firestore.doc(this.collectionName + '/' + recordID).update(record);
   }
@@ -27,4 +31,5 @@ export class FirebaseService {
   delete_user(recordID) {
     this.firestore.doc(this.collectionName + '/' + recordID).delete();
   }
+
 }

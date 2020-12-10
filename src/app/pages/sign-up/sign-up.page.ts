@@ -4,6 +4,8 @@ import {FirebaseService} from '../../services/firebase.service';
 import {User} from '../../model/user';
 import {ValidatePassword} from '../../customs/customValidators/validate-password';
 import {AngularFireAuth} from '@angular/fire/auth';
+import {NavController} from '@ionic/angular';
+import {NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,7 +18,8 @@ export class SignUpPage implements OnInit {
   showPassword = false;
   showConfirmPassword = false;
 
-  constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder, public afAuth: AngularFireAuth) {}
+  constructor(private firebaseService: FirebaseService, public formBuilder: FormBuilder, public afAuth: AngularFireAuth,
+              public navCtrl: NavController) {}
 
   ngOnInit() {
     this.userForm = this.formBuilder.group({
@@ -53,6 +56,12 @@ export class SignUpPage implements OnInit {
                 this.firebaseService.create_user({ id: auth.uid, ...user }, auth.uid).then(() => {
                   this.userForm.reset();
                   window.alert('You have been successfully registered !');
+                  const navigationExtras: NavigationExtras = {
+                    state: {
+                      uid: auth.uid
+                    }
+                  };
+                  this.navCtrl.navigateForward(['home'], navigationExtras);
                 }).catch(error => {
                   console.log(error);
                 });

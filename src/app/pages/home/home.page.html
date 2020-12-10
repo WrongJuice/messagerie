@@ -1,8 +1,10 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>home</ion-title>
-    <ion-label>View my profile :</ion-label>
-    <ion-button>Jordi</ion-button>
+    <ion-title>Home</ion-title>
+    <ion-list style="text-align: center">
+      <ion-button>{{ dataUser.username }}</ion-button>
+      <ion-button (click)="logout()" color="danger">Logout</ion-button>
+    </ion-list>
   </ion-toolbar>
 </ion-header>
 

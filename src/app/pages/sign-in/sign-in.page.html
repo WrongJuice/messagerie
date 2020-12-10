@@ -6,7 +6,7 @@
 
 <ion-content>
 
-  <ng-container *ngIf="!connected">
+  <ng-container>
 
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
 
@@ -37,13 +37,5 @@
     </ion-list>
 
   </ng-container>
-
-  <div *ngIf="connected">
-    <h1>You are connected !</h1>
-
-    <ion-button (click)="logout()" color="danger">
-      &nbsp;Logout
-    </ion-button>
-  </div>
 
 </ion-content>

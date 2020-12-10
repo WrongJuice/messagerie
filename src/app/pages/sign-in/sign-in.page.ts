@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {NavController} from '@ionic/angular';
+import {NavigationExtras} from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -14,6 +15,9 @@ export class SignInPage implements OnInit {
     email: '',
     password: ''
   };
+
+  uid: string;
+  method: string;
   loginForm: FormGroup;
   showPassword = false;
   connected: boolean;
@@ -26,6 +30,13 @@ export class SignInPage implements OnInit {
       } else {
         console.log('connecte');
         this.connected = true;
+        this.uid = auth.uid;
+        const navigationExtras: NavigationExtras = {
+          state: {
+            uid: this.uid
+          }
+        };
+        this.navCtrl.navigateForward(['home'], navigationExtras);
       }
     });
   }
@@ -52,14 +63,9 @@ export class SignInPage implements OnInit {
             email: '',
             password: ''
           };
-          this.navCtrl.navigateForward('/home');
         }).catch((error) => {
       window.alert(error.message);
     });
-  }
-
-  logout() {
-    this.afAuth.signOut().then(r => console.log(this.connected = false));
   }
 
   createAccount() {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../model/user';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FirebaseService} from '../../services/firebase.service';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,43 @@ import {FirebaseService} from '../../services/firebase.service';
 export class HomePage implements OnInit {
 
   private users = [];
-  constructor(private router: Router, private firebaseService: FirebaseService) { }
+
+  dataUser = {
+    username: '',
+    uid: ''
+  };
+
+  constructor(private router: Router, private firebaseService: FirebaseService, private route: ActivatedRoute,
+              public afAuth: AngularFireAuth, public navCtrl: NavController) {
+    this.route.queryParams.subscribe(() => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.dataUser.uid = this.router.getCurrentNavigation().extras.state.uid;
+        firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
+          this.dataUser = {
+            username: data.payload.data()['username'],
+            uid: this.dataUser.uid
+          };
+        });
+        console.log('Hello ' + this.dataUser.uid);
+      } else {
+        this.afAuth.authState.subscribe(auth => {
+          if (!auth) {
+            console.log('non connecte');
+          } else {
+            console.log('connecte');
+            this.dataUser.uid = auth.uid;
+            firebaseService.getUserById(this.dataUser.uid).subscribe(data => {
+              this.dataUser = {
+                username: data.payload.data()['username'],
+                uid: this.dataUser.uid
+              };
+            });
+            console.log('Hello ' + this.dataUser.uid);
+          }
+        });
+      }
+    });
+  }
 
   ngOnInit() {
 
@@ -33,4 +70,8 @@ export class HomePage implements OnInit {
     });
   }
 
+  logout() {
+    this.afAuth.signOut().then(r => console.log('deconnexion'));
+    this.navCtrl.navigateForward('/sign-in');
+  }
 }
