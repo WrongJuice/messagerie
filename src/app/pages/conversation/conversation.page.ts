@@ -33,8 +33,7 @@ export class ConversationPage implements OnInit {
           } else {
             console.log('connected');
             this.message.senderId = auth.uid;
-            console.log('Hello ' + this.message.senderId);
-            console.log('You discuss with ' + this.message.receiverId);
+            console.log('Hello ' + this.message.senderId + ' | You discuss with ' + this.message.receiverId);
           }
         });
       }
@@ -48,7 +47,9 @@ export class ConversationPage implements OnInit {
     this.message.date = new Date().toISOString();
     this.afAuth.authState.subscribe(
         () => {
-          this.firebaseService.send_message(this.message).then();
+          this.firebaseService.send_message(this.message).then(() => {
+            this.message.messageText = '';
+          });
         }
     );
   }
