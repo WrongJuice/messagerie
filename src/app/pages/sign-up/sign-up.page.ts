@@ -45,11 +45,10 @@ export class SignUpPage implements OnInit {
       username: this.userForm.value.username,
       birthdate: this.userForm.value.birthdate,
       email: this.userForm.value.email,
-      address: this.userForm.value.address,
-      password: this.userForm.value.password,
+      address: this.userForm.value.address
     };
 
-    this.afAuth.createUserWithEmailAndPassword(user.email, user.password)
+    this.afAuth.createUserWithEmailAndPassword(user.email, this.userForm.value.password)
         .then(() => {
           this.afAuth.authState.subscribe(
               auth => {

@@ -15,7 +15,7 @@ export class FirebaseService {
   constructor(private firestore: AngularFirestore) { }
 
   create_user(user: User, uid: string) {
-    this.firestore.collection(this.collectionUsers).doc(uid).set(user);
+    return this.firestore.collection(this.collectionUsers).doc(uid).set(user);
   }
 
   read_user() {
@@ -35,7 +35,7 @@ export class FirebaseService {
   }
 
   send_message(message: Message){
-    this.firestore.collection(this.collectionMessages).add(message);
+    return this.firestore.collection(this.collectionMessages).add(message);
   }
 
 }

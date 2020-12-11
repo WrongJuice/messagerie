@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>'s conversation</ion-title>
+    <ion-title>{{ interlocutorUsername }}'s conversation</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -9,10 +9,10 @@
   <ion-grid>
     <ion-row>
       <ion-col class="inputCol" size="10">
-        <ion-input [(ngModel)]="message" placeholder="Enter your message"></ion-input>
+        <ion-input [(ngModel)]="message.messageText" placeholder="Enter your message"></ion-input>
       </ion-col>
       <ion-col class="sendCol" size="2">
-        <ion-buttons (click)="send()" shape="full">
+        <ion-buttons (click)="send()">
           <ion-icon name="send"></ion-icon>
         </ion-buttons>
       </ion-col>

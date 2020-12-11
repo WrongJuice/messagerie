@@ -51,7 +51,6 @@ export class HomePage implements OnInit {
           username: e.payload.doc.data()['username'],
           birthdate: e.payload.doc.data()['birthdate'],
           email: e.payload.doc.data()['email'],
-          password: e.payload.doc.data()['password'],
           address: e.payload.doc.data()['address'],
           id: e.payload.doc.data()['id']
         };
