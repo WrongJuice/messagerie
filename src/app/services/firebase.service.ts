@@ -38,4 +38,11 @@ export class FirebaseService {
     return this.firestore.collection(this.collectionMessages).add(message);
   }
 
+  get_messages(senderId: string, receiverId: string){
+    return this.firestore.collection(this.collectionMessages, ref => ref
+        .where('senderId', '==', senderId)
+        .where('receiverId', '==', receiverId))
+        .snapshotChanges();
+  }
+
 }

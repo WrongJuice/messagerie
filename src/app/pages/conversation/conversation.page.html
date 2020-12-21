@@ -6,17 +6,25 @@
 
 <ion-content>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col class="inputCol" size="10">
-        <ion-input [(ngModel)]="message.messageText" placeholder="Enter your message"></ion-input>
-      </ion-col>
-      <ion-col class="sendCol" size="2">
-        <ion-buttons (click)="send()">
-          <ion-icon name="send"></ion-icon>
-        </ion-buttons>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-list *ngFor="let message of messagesToDisplay">
+    <app-message [messageText]="message.messageText"></app-message>
+  </ion-list>
+
+  <form [formGroup]="messageForm" (ngSubmit)="send()">
+
+    <ion-grid>
+      <ion-row class="ion-align-self-baseline">
+        <ion-col class="inputCol" size="10">
+          <ion-input [(ngModel)]="messageToSend.messageText" formControlName="messageText" placeholder="Enter your message"></ion-input>
+        </ion-col>
+        <ion-col class="sendCol" size="2">
+          <ion-button (click)="send()" [disabled]="messageForm.invalid">
+            <ion-icon name="send"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </form>
 
 </ion-content>

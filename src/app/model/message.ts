@@ -3,4 +3,5 @@ export interface Message {
     receiverId: string;
     messageText: string;
     date: string;
+    isSender?: boolean;
 }

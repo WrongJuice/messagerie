@@ -11,7 +11,7 @@ import {NavController} from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
-  private users = [];
+  users = [];
 
   dataUser = {
     username: '',
@@ -56,7 +56,6 @@ export class HomePage implements OnInit {
         };
       });
       console.log(this.users);
-
     });
   }
 
